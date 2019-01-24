@@ -1,3 +1,5 @@
+-- Blink an LED on the Remote I/O server (embedded equivalent to "Hello, world")
+
 WITH Ada.Text_IO; USE Ada.Text_IO;
 
 WITH Channels;
