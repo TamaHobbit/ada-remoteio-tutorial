@@ -1,0 +1,48 @@
+project Test_Led is
+
+   OS          := external("OS", external("OSNAME", "unknown"));
+   LIBSIMPLEIO := external("LIBSIMPLEIO", external("HOME") & "/libsimpleio");
+
+   case OS is
+      -- Assume munts-libsimpleio package is installed...
+      when "debian9" | "beagle9" | "raspbian9" =>
+         LIBSIMPLEIO := external("LIBSIMPLEIO", "/usr/local/share/libsimpleio");
+
+      -- Windows home directory is %HOMEDRIVE%%HOMEPATH% instead of $HOME
+      when "Windows_NT" =>
+         LIBSIMPLEIO := external("LIBSIMPLEIO", external("HOMEDRIVE") & external("HOMEPATH") & "\libsimpleio");
+
+      when others =>
+         null;
+   end case;
+
+   for Source_Dirs use (".",
+      LIBSIMPLEIO & "/ada/bindings",
+      LIBSIMPLEIO & "/ada/devices",
+      LIBSIMPLEIO & "/ada/interfaces",
+      LIBSIMPLEIO & "/ada/objects",
+      LIBSIMPLEIO & "/ada/remoteio",
+      LIBSIMPLEIO & "/ada/remoteio/client");
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-g", "-gnat2012");
+   end Compiler;
+
+   package Linker is
+      case OS is
+         -- Windows requires a DLL in libsimpleio/win/win32/ or libsimpleio/win/win64/
+         when "Windows_NT" =>
+            for Default_Switches ("ada") use ("-L" & LIBSIMPLEIO & "/win/" & external("WINARCH", "win64"));
+
+         when others =>
+            null;
+      end case;
+   end Linker;
+
+   for Object_Dir use "./obj";
+
+   for Exec_Dir use ".";
+
+   for Main use ("test_led.adb");
+
+end Test_Led;
