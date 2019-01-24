@@ -15,14 +15,18 @@ include $(LIBSIMPLEIO)/ada/include/remoteio.mk
 # Compile the test programs
 
 default:
+ifneq ($(GNAT_ADACORE),)
+ifeq ($(OS), Windows_NT)
+	$(MAKE) hidapi.dll
+endif
+endif
 	for F in *.adb ; do $(MAKE) `basename $$F .adb` ; done
 
 # Remove working files
 
 clean: ada_mk_clean
-	for F in *.adb ; do rm -f `basename $$F .adb` ; done
+	for F in *.adb *.dll ; do rm -f `basename $$F .adb` ; done
 
 reallyclean: clean ada_mk_reallyclean
-	rm -rf *.dll
 
 distclean: reallyclean ada_mk_distclean
