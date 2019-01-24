@@ -15,7 +15,7 @@ include $(LIBSIMPLEIO)/ada/include/remoteio.mk
 # Compile the test programs
 
 default:
-ifneq ($(GNAT_ADACORE),)
+ifneq ($(GNAT),)
 ifeq ($(OS), Windows_NT)
 	$(MAKE) hidapi.dll
 endif
