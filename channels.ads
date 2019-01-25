@@ -27,9 +27,9 @@ PACKAGE Channels IS
 
   -- PWM outputs
 
-  LPC1114_PWM1  : CONSTANT RemoteIO.ChannelNumber := 1;	-- aka LPC1114 P1.1
-  LPC1114_PWM2  : CONSTANT RemoteIO.ChannelNumber := 2;	-- aka LPC1114 P1.2
-  LPC1114_PWM3  : CONSTANT RemoteIO.ChannelNumber := 3;	-- aka LPC1114 P1.3
-  LPC1114_PWM4  : CONSTANT RemoteIO.ChannelNumber := 4;	-- aka LPC1114 P1.9
+  LPC1114_PWM1  : CONSTANT RemoteIO.ChannelNumber := 1;	 -- aka LPC1114 P1.1
+  LPC1114_PWM2  : CONSTANT RemoteIO.ChannelNumber := 2;	 -- aka LPC1114 P1.2
+  LPC1114_PWM3  : CONSTANT RemoteIO.ChannelNumber := 3;	 -- aka LPC1114 P1.3
+  LPC1114_PWM4  : CONSTANT RemoteIO.ChannelNumber := 4;	 -- aka LPC1114 P1.9
 
 END Channels;
