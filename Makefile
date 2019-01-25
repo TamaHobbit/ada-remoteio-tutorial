@@ -6,7 +6,7 @@ EMBLINUXBASE	?= $(HOME)/arm-linux-mcu
 include $(EMBLINUXBASE)/include/$(BOARDNAME).mk
 else
 # Native compile for Linux (e.g. Raspbian)
-LIBSIMPLEIO	?= /usr/local/share/libsimpleio
+LIBSIMPLEIO	?= $(HOME)/libsimpleio
 endif
 
 include $(LIBSIMPLEIO)/ada/include/ada.mk
