@@ -2,6 +2,7 @@ project Test_Led is
 
    OS          := external("OS", external("OSNAME", "unknown"));
    LIBSIMPLEIO := external("LIBSIMPLEIO", external("HOME") & "/libsimpleio");
+   WINARCH     := external("WINARCH", "win64");
 
    case OS is
       -- Assume munts-libsimpleio package is installed...
@@ -10,7 +11,8 @@ project Test_Led is
 
       -- Windows home directory is %HOMEDRIVE%%HOMEPATH% instead of $HOME
       when "Windows_NT" =>
-         LIBSIMPLEIO := external("LIBSIMPLEIO", external("HOMEDRIVE") & external("HOMEPATH") & "\libsimpleio");
+         LIBSIMPLEIO := external("LIBSIMPLEIO",
+           external("HOMEDRIVE") & external("HOMEPATH") & "\libsimpleio");
 
       when others =>
          null;
@@ -30,9 +32,10 @@ project Test_Led is
 
    package Linker is
       case OS is
-         -- Windows requires a DLL in libsimpleio/win/win32/ or libsimpleio/win/win64/
+         -- Windows requires hidapi.dll for linking
          when "Windows_NT" =>
-            for Default_Switches ("ada") use ("-L" & LIBSIMPLEIO & "/win/" & external("WINARCH", "win64"));
+            for Default_Switches ("ada") use
+              ("-L" & LIBSIMPLEIO & "/win/" & WINARCH);
 
          when others =>
             null;
