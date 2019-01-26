@@ -1,0 +1,3 @@
+[submodule "libsimpleio"]
+	path = libsimpleio
+	url = https://github.com/pmunts/libsimpleio.git
