@@ -6,7 +6,7 @@ project Test_Led is
 
    case OS is
       -- Assume munts-libsimpleio package is installed...
-      when "debian9" | "beagle9" | "raspbian9" =>
+      when "debian9" | "raspbian9" =>
          LIBSIMPLEIO := external("LIBSIMPLEIO", "/usr/local/share/libsimpleio");
 
       -- Windows home directory is %HOMEDRIVE%%HOMEPATH% instead of $HOME
