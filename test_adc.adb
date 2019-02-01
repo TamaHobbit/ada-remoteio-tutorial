@@ -2,8 +2,7 @@
 
 WITH Ada.Text_IO; USE Ada.Text_IO;
 
-WITH ADC.RemoteIO;
-WITH Analog;
+WITH ADC;
 WITH RemoteIO.Client.hidapi;
 WITH Voltage;
 
