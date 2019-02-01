@@ -4,8 +4,7 @@ WITH Ada.Text_IO; USE Ada.Text_IO;
 
 WITH Channels;
 WITH GPIO;
-WITH HID.hidapi;
-WITH RemoteIO.Client;
+WITH RemoteIO.Client.hidapi;
 
 PROCEDURE test_led IS
 
@@ -17,7 +16,7 @@ BEGIN
   Put_Line("Remote I/O LED test");
   New_Line;
 
-  remdev := RemoteIO.Client.Create(HID.hidapi.Create);
+  remdev := RemoteIO.Client.hidapi.Create;
   LED    := remdev.Create(Channels.LPC1114_LED, GPIO.Output);
 
   LOOP
