@@ -1,4 +1,4 @@
--- USB HID Remote I/O A/D Converter Test
+-- Remote I/O A/D Converter Test
 
 WITH Ada.Text_IO; USE Ada.Text_IO;
 
@@ -13,7 +13,7 @@ PROCEDURE test_adc IS
 
 BEGIN
   New_Line;
-  Put_Line("USB HID Remote I/O A/D Converter Test");
+  Put_Line("Remote I/O A/D Converter Test");
   New_Line;
 
   -- Open the remote I/O device
