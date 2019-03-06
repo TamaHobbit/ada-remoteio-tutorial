@@ -3,6 +3,7 @@
 with Ada.Text_IO; use Ada.Text_IO;
 
 with ADC;
+with LPC1114;
 with RemoteIO.Client.hidapi;
 with Voltage;
 
@@ -19,7 +20,7 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   AIN0   := ADC.Create(remdev.Create(1), 3.3);
+   AIN0   := ADC.Create(remdev.Create(LPC1114.AD1), 3.3);
 
    -- Display analog input voltage
 
