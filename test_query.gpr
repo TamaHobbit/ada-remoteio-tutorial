@@ -1,0 +1,51 @@
+project Test_Query is
+
+   OS          := external("OS", external("OSNAME", "unknown"));
+   LIBSIMPLEIO := external("LIBSIMPLEIO", external("HOME") & "/libsimpleio");
+   WINARCH     := external("WINARCH", "win64");
+
+   case OS is
+      -- Assume munts-libsimpleio package is installed...
+      when "debian9" | "raspbian9" =>
+         LIBSIMPLEIO := external("LIBSIMPLEIO", "/usr/local/share/libsimpleio");
+
+      -- Windows home directory is %HOMEDRIVE%%HOMEPATH% instead of $HOME
+      when "Windows_NT" =>
+         LIBSIMPLEIO := external("LIBSIMPLEIO",
+           external("HOMEDRIVE") & external("HOMEPATH") & "\libsimpleio");
+
+      when others =>
+         null;
+   end case;
+
+   for Source_Dirs use (".",
+      LIBSIMPLEIO & "/ada/bindings",
+      LIBSIMPLEIO & "/ada/devices",
+      LIBSIMPLEIO & "/ada/interfaces",
+      LIBSIMPLEIO & "/ada/objects",
+      LIBSIMPLEIO & "/ada/remoteio",
+      LIBSIMPLEIO & "/ada/remoteio/client");
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-g", "-gnat2012");
+   end Compiler;
+
+   package Linker is
+      case OS is
+         -- Windows requires hidapi.dll for linking
+         when "Windows_NT" =>
+            for Default_Switches ("ada") use
+              ("-L" & LIBSIMPLEIO & "/win/" & WINARCH);
+
+         when others =>
+            null;
+      end case;
+   end Linker;
+
+   for Object_Dir use "./obj";
+
+   for Exec_Dir use ".";
+
+   for Main use ("test_query.adb");
+
+end Test_Query;
