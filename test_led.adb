@@ -7,6 +7,12 @@ with RemoteIO.Client.hidapi;
 
 procedure test_led is
 
+   -- Remote I/O server implementations commonly have GPIO channel 0 dedicated
+   -- to an on board LED.  This is not universally implemented, so change the
+   -- following constant if necessary.
+
+   Channel_LED : constant := 0;
+
    remdev : RemoteIO.Client.Device;
    LED    : GPIO.Pin;
 
@@ -16,7 +22,7 @@ begin
    New_Line;
 
    remdev := RemoteIO.Client.hidapi.Create;
-   LED    := remdev.Create(0, GPIO.Output);
+   LED    := remdev.Create(Channel_LED, GPIO.Output);
 
    loop
       LED.Put(not LED.Get);
