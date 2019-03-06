@@ -2,7 +2,6 @@
 
 WITH Ada.Text_IO; USE Ada.Text_IO;
 
-WITH Channels;
 WITH GPIO;
 WITH RemoteIO.Client.hidapi;
 
@@ -17,7 +16,7 @@ BEGIN
   New_Line;
 
   remdev := RemoteIO.Client.hidapi.Create;
-  LED    := remdev.Create(Channels.LPC1114_LED, GPIO.Output);
+  LED    := remdev.Create(0, GPIO.Output);
 
   LOOP
     LED.Put(NOT LED.Get);
