@@ -3,14 +3,13 @@
 with Ada.Text_IO; use Ada.Text_IO;
 
 with ADC;
-with LPC1114;
 with RemoteIO.Client.hidapi;
 with Voltage;
 
 procedure test_adc is
 
    remdev : RemoteIO.Client.Device;
-   AIN0   : Voltage.Interfaces.Input;
+   AD1    : Voltage.Interfaces.Input;
 
 begin
    New_Line;
@@ -20,12 +19,12 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   AIN0   := ADC.Create(remdev.Create(LPC1114.AD1), 3.3);
+   AD1    := ADC.Create(remdev.Create(1), 3.3);
 
    -- Display analog input voltage
 
    loop
-      Voltage.Volts_IO.Put(AIN0.Get);
+      Voltage.Volts_IO.Put(AD1.Get);
       New_Line;
 
       delay 1.0;
