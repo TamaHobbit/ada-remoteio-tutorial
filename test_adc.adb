@@ -10,7 +10,7 @@ with Voltage;
 procedure test_adc is
 
    remdev : RemoteIO.Client.Device;
-   AD1    : Voltage.Interfaces.Input;
+   Vin    : Voltage.Interfaces.Input;
 
 begin
    New_Line;
@@ -20,12 +20,12 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   AD1    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AD1), 3.3);
+   Vin    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AD1), 3.3);
 
-   -- Display analog input voltage
+   -- Display analog Vinut voltage
 
    loop
-      Voltage.Volts_IO.Put(AD1.Get);
+      Voltage.Volts_IO.Put(Vin.Get);
       New_Line;
 
       delay 1.0;
