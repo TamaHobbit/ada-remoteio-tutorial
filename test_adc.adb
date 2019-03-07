@@ -20,7 +20,7 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   Vin    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AD1), 3.3);
+   Vin    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AIN1), 3.3);
 
    -- Display analog Vinut voltage
 
