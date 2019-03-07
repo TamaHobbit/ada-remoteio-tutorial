@@ -4,6 +4,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 with ADC;
 with RemoteIO.Client.hidapi;
+with RemoteIO.LPC1114;
 with Voltage;
 
 procedure test_adc is
@@ -19,7 +20,7 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   AD1    := ADC.Create(remdev.Create(1), 3.3);
+   AD1    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AD1), 3.3);
 
    -- Display analog input voltage
 
