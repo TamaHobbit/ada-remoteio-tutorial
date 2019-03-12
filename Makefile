@@ -1,17 +1,15 @@
 # Makefile for building Ada Remote I/O example programs
 
-ifneq ($(BOARDNAME),)
-# Cross compile for MuntsOS
-EMBLINUXBASE	?= $(HOME)/muntsos
-include $(EMBLINUXBASE)/include/$(BOARDNAME).mk
-else
-# Native compile for Linux (e.g. Raspbian)
+ifneq ($(wildcard /usr/local/gnat),)
+GNAT		?= /usr/local/gnat
+endif
+
 ifneq ($(wildcard $(HOME)/libsimpleio),)
 LIBSIMPLEIO	?= $(HOME)/libsimpleio
 endif
+
 ifneq ($(wildcard /usr/local/share/libsimpleio),)
 LIBSIMPLEIO	?= /usr/local/share/libsimpleio
-endif
 endif
 
 include $(LIBSIMPLEIO)/ada/include/ada.mk
