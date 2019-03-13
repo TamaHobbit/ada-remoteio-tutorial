@@ -1,9 +1,5 @@
 # Makefile for building Ada Remote I/O example programs
 
-ifneq ($(wildcard /usr/local/gnat),)
-GNAT		?= /usr/local/gnat
-endif
-
 ifneq ($(wildcard $(HOME)/libsimpleio),)
 LIBSIMPLEIO	?= $(HOME)/libsimpleio
 endif
@@ -18,8 +14,8 @@ include $(LIBSIMPLEIO)/ada/include/remoteio.mk
 # Compile the test programs
 
 default:
-ifneq ($(GNAT),)
 ifeq ($(OS), Windows_NT)
+ifneq ($(GNAT),)
 	$(MAKE) hidapi.dll
 endif
 endif
