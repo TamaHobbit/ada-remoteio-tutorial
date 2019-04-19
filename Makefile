@@ -19,12 +19,12 @@ ifneq ($(GNAT),)
 	$(MAKE) hidapi.dll
 endif
 endif
-	for F in *.adb ; do $(MAKE) `basename $$F .adb` ; done
+	for F in test*.adb ; do $(MAKE) `basename $$F .adb` ; done
 
 # Remove working files
 
 clean: ada_mk_clean
-	for F in *.adb *.dll ; do rm -f `basename $$F .adb` ; done
+	for F in test*.adb *.dll ; do rm -f `basename $$F .adb` ; done
 
 reallyclean: clean ada_mk_reallyclean
 
