@@ -37,7 +37,8 @@ begin
 
    iopdev.Operation(cmd, resp);
 
-   Put_Line("LPC1114 Firmware Version:" & resp.Data'Image);
+   Put_Line("LPC1114 Firmware Version:" &
+     Interfaces.Unsigned_32'Image(resp.Data));
 
    -- Display the LPC1114 chip ID
 
