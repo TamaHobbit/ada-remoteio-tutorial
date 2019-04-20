@@ -2,7 +2,7 @@
 
 with Ada.Text_IO; use Ada.Text_IO;
 
-with GPIO;
+with GPIO.RemoteIO;
 with RemoteIO.Client.hidapi;
 
 procedure test_led is
@@ -22,7 +22,7 @@ begin
    New_Line;
 
    remdev := RemoteIO.Client.hidapi.Create;
-   LED    := remdev.Create(Channel_LED, GPIO.Output);
+   LED    := GPIO.RemoteIO.Create(remdev, 0, GPIO.Output);
 
    loop
       LED.Put(not LED.Get);

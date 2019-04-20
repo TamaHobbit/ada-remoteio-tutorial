@@ -2,7 +2,7 @@
 
 with Ada.Text_IO; use Ada.Text_IO;
 
-with ADC;
+with ADC.RemoteIO;
 with RemoteIO.Client.hidapi;
 with RemoteIO.LPC1114;
 with Voltage;
@@ -20,7 +20,7 @@ begin
    -- Open the remote I/O device
 
    remdev := RemoteIO.Client.hidapi.Create;
-   Vin    := ADC.Create(remdev.Create(RemoteIO.LPC1114.AIN1), 3.3);
+   Vin    := ADC.Create(ADC.RemoteIO.Create(remdev, RemoteIO.LPC1114.AIN1), 3.3);
 
    -- Display analog Vinut voltage
 
