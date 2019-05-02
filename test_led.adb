@@ -9,7 +9,7 @@ procedure test_led is
 
   -- Remote I/O server implementations commonly have GPIO channel 0 dedicated
   -- to an on board LED.  This is not universally implemented, so change the
-  -- following constant if necessary (e.g. to 20 for the GHI FEZ board).
+  -- following constant if necessary (e.g. to 20 or 21 for the GHI FEZ board).
 
   Channel_LED : constant := 0;
 
