@@ -22,7 +22,7 @@ begin
   remdev := RemoteIO.Client.hidapi.Create;
   Vin    := ADC.Create(ADC.RemoteIO.Create(remdev, RemoteIO.LPC1114.AIN1), 3.3);
 
-  -- Display analog Vinut voltage
+  -- Display analog input voltage
 
   loop
     Voltage.Volts_IO.Put(Vin.Get);
