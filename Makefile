@@ -1,5 +1,11 @@
 # Makefile for building Ada Remote I/O example programs
 
+# These targets are not files
+
+.PHONY: default clean reallyclean distclean
+
+# Find where libsimpleio is installed
+
 ifneq ($(wildcard $(HOME)/libsimpleio),)
 LIBSIMPLEIO	?= $(HOME)/libsimpleio
 endif
@@ -7,6 +13,12 @@ endif
 ifneq ($(wildcard /usr/local/share/libsimpleio),)
 LIBSIMPLEIO	?= /usr/local/share/libsimpleio
 endif
+
+# Define a pattern rule to build an Ada Remote I/O tutorial test program using
+# a common project file tutorial.gpr.  This will override the rule in ada.mk.
+
+%:
+	$(GPRBUILD) tutorial.gpr $(GPRBUILDFLAGS) $@ -cargs $(GPRBUILDCFLAGS) -largs $(GPRBUILDLDFLAGS)
 
 include $(LIBSIMPLEIO)/ada/include/ada.mk
 include $(LIBSIMPLEIO)/ada/include/remoteio.mk
