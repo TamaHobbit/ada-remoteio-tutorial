@@ -1,4 +1,4 @@
--- Remote I/O Abstract Device Information Query Test
+-- LPC1114 I/O Processor Device Information Query Test
 
 with Ada.Text_IO; use Ada.Text_IO;
 with Interfaces;
