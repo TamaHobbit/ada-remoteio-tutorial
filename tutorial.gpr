@@ -37,6 +37,11 @@ project tutorial is
         for Default_Switches ("ada") use
           ("-L" & LIBSIMPLEIO & "/win/" & WINARCH);
 
+      when "Darwin" =>
+        for Default_Switches ("ada") use
+          ("-L/usr/local/lib",
+           "-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib");
+        
       when others =>
         null;
     end case;
