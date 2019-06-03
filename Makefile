@@ -17,8 +17,8 @@ endif
 # Use AdaCore GNAT, if installed at one of the "usual" places
 
 ifeq ($(OS), Windows_NT)
-ifneq ($(wildcard C:/PROGRA~1/gnat,)
-GNAT		?= C:/PROGRA~1/gnat)
+ifneq ($(wildcard C:/PROGRA~1/gnat),)
+GNAT		?= C:/PROGRA~1/gnat
 endif
 else
 ifneq ($(wildcard /usr/local/gnat),)
