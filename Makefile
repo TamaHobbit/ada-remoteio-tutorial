@@ -14,6 +14,18 @@ ifneq ($(wildcard /usr/local/share/libsimpleio),)
 LIBSIMPLEIO	?= /usr/local/share/libsimpleio
 endif
 
+# Use AdaCore GNAT, if installed at one of the "usual" places
+
+ifeq ($(OS), Windows_NT)
+ifneq ($(wildcard C:/PROGRA~1/gnat,)
+GNAT		?= C:/PROGRA~1/gnat)
+endif
+else
+ifneq ($(wildcard /usr/local/share/libsimpleio),)
+GNAT		?= /usr/local/gnat
+endif
+endif
+
 # Define a pattern rule to build an Ada Remote I/O tutorial test program using
 # a common project file tutorial.gpr.  This will override the rule in ada.mk.
 
