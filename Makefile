@@ -21,7 +21,7 @@ ifneq ($(wildcard C:/PROGRA~1/gnat,)
 GNAT		?= C:/PROGRA~1/gnat)
 endif
 else
-ifneq ($(wildcard /usr/local/share/libsimpleio),)
+ifneq ($(wildcard /usr/local/gnat),)
 GNAT		?= /usr/local/gnat
 endif
 endif
