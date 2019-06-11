@@ -29,7 +29,7 @@ endif
 # Define a pattern rule to build an Ada Remote I/O tutorial test program using
 # a common project file tutorial.gpr.  This will override the rule in ada.mk.
 
-%:
+%: %.adb
 	$(GPRBUILD) tutorial.gpr $(GPRBUILDFLAGS) $@ -cargs $(GPRBUILDCFLAGS) -largs $(GPRBUILDLDFLAGS)
 
 include $(LIBSIMPLEIO)/ada/include/ada.mk
